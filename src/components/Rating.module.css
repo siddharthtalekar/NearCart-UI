@@ -1,0 +1,9 @@
+/* src/components/Rating.module.css */
+.wrapper { display: inline-flex; align-items: center; gap: 4px; }
+.stars   { display: flex; gap: 1px; }
+.star    { flex-shrink: 0; }
+.filled  { color: #f59e0b; fill: #f59e0b; }
+.half    { color: #f59e0b; fill: none; }
+.empty   { color: #d1d5db; fill: none; }
+.value   { font-size: var(--text-sm); font-weight: var(--font-semibold); color: var(--color-text-primary); }
+.count   { font-size: var(--text-xs); color: var(--color-text-tertiary); }

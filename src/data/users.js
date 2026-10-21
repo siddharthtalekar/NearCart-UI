@@ -1,0 +1,118 @@
+// src/data/users.js — Mock users for all roles
+
+export const mockUsers = [
+  {
+    id: 'u1',
+    name: 'Priya Sharma',
+    email: 'customer@demo.com',
+    password: 'demo1234',
+    phone: '+91 98234 56789',
+    role: 'customer',
+    avatar: null,
+    addresses: [
+      {
+        id: 'a1',
+        label: 'Home',
+        line1: 'Flat 4B, Sunrise Apartments',
+        line2: 'Baner Road',
+        city: 'Pune',
+        state: 'Maharashtra',
+        pincode: '411045',
+        lat: 18.5590,
+        lng: 73.7868,
+        isDefault: true,
+      },
+      {
+        id: 'a2',
+        label: 'Office',
+        line1: '3rd Floor, TechHub, Hinjewadi Phase 1',
+        city: 'Pune',
+        state: 'Maharashtra',
+        pincode: '411057',
+        lat: 18.5912,
+        lng: 73.7389,
+        isDefault: false,
+      },
+    ],
+    notificationPrefs: { orderUpdates: true, offers: true, newsletter: false },
+    paymentPrefs: { preferred: 'cod' },
+    createdAt: '2024-01-15T08:00:00Z',
+    status: 'active',
+  },
+  {
+    id: 'u2',
+    name: 'Vikram Patil',
+    email: 'owner@demo.com',
+    password: 'demo1234',
+    phone: '+91 97654 32100',
+    role: 'owner',
+    avatar: null,
+    storeId: 's1',
+    createdAt: '2024-02-01T09:00:00Z',
+    status: 'active',
+  },
+  {
+    id: 'u3',
+    name: 'Ravi Jadhav',
+    email: 'delivery@demo.com',
+    password: 'demo1234',
+    phone: '+91 99876 54321',
+    role: 'delivery',
+    avatar: null,
+    vehicleType: 'Bike',
+    vehicleNumber: 'MH-12-AB-3456',
+    verificationStatus: 'approved',
+    isOnline: false,
+    currentLocation: { lat: 18.5590, lng: 73.7868 },
+    earnings: { today: 340, thisWeek: 2100, thisMonth: 8400 },
+    createdAt: '2024-01-20T10:00:00Z',
+    status: 'active',
+  },
+  {
+    id: 'u4',
+    name: 'Admin User',
+    email: 'admin@demo.com',
+    password: 'demo1234',
+    phone: '+91 98001 12345',
+    role: 'admin',
+    avatar: null,
+    createdAt: '2023-12-01T00:00:00Z',
+    status: 'active',
+  },
+  // Extra customers
+  {
+    id: 'u5', name: 'Ananya Kulkarni', email: 'ananya@example.com', password: 'pass',
+    phone: '+91 98765 00001', role: 'customer', avatar: null, addresses: [], status: 'active',
+    createdAt: '2024-03-10T00:00:00Z',
+  },
+  {
+    id: 'u6', name: 'Saurabh Desai', email: 'saurabh@example.com', password: 'pass',
+    phone: '+91 98765 00002', role: 'customer', avatar: null, addresses: [], status: 'suspended',
+    createdAt: '2024-04-05T00:00:00Z',
+  },
+  // Extra owners
+  {
+    id: 'u7', name: 'Meena Joshi', email: 'meena@example.com', password: 'pass',
+    phone: '+91 98765 00003', role: 'owner', storeId: 's2', avatar: null, status: 'active',
+    createdAt: '2024-02-20T00:00:00Z',
+  },
+  {
+    id: 'u8', name: 'Ajay Nair', email: 'ajay@example.com', password: 'pass',
+    phone: '+91 98765 00004', role: 'owner', storeId: 's3', avatar: null, status: 'active',
+    createdAt: '2024-03-01T00:00:00Z',
+  },
+  // Pending delivery partner
+  {
+    id: 'u9', name: 'Sachin More', email: 'sachin@example.com', password: 'pass',
+    phone: '+91 98765 00005', role: 'delivery', vehicleType: 'Scooter',
+    verificationStatus: 'pending', isOnline: false, avatar: null, status: 'pending',
+    createdAt: '2024-06-01T00:00:00Z',
+  },
+];
+
+export const getDemoCredentials = () => [
+  { role: 'Customer',          email: 'customer@demo.com',  password: 'demo1234', icon: '🛍️' },
+  { role: 'Shop Owner',        email: 'owner@demo.com',     password: 'demo1234', icon: '🏪' },
+  { role: 'Delivery Partner',  email: 'delivery@demo.com',  password: 'demo1234', icon: '🛵' },
+  { role: 'Admin',             email: 'admin@demo.com',     password: 'demo1234', icon: '🔑' },
+];

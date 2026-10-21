@@ -1,0 +1,45 @@
+/* src/components/QuantityStepper.module.css */
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+  vertical-align: middle;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  padding: 0;
+  flex-shrink: 0;
+}
+.btn:hover:not(:disabled) { background: var(--color-primary-light); }
+.btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.value {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+  min-width: 28px;
+  text-align: center;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sizes */
+.md .btn   { width: 34px; height: 34px; }
+.md .value { height: 34px; line-height: 34px; min-width: 32px; font-size: var(--text-sm); }
+.sm .btn   { width: 28px; height: 28px; }
+.sm .value { height: 28px; line-height: 28px; font-size: var(--text-xs); min-width: 26px; }

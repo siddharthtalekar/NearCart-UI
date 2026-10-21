@@ -1,0 +1,162 @@
+# MASTER PROMPT: Build the complete NearCart frontend UI
+
+## ROLE
+You are a senior frontend engineer and UI/UX designer. Build the COMPLETE frontend
+of "NearCart" using React (Vite), HTML, CSS and JavaScript. Frontend only: no real
+backend. Use mock data and a mock service layer so every screen is fully clickable
+and realistic.
+
+## PRODUCT SUMMARY
+NearCart is a hyperlocal marketplace. Shoppers discover nearby independent stores,
+compare products and prices across stores, and order with local delivery. Shop
+owners manage listings, stock and offers. Delivery partners fulfil orders. Admins
+approve and monitor everything.
+
+## TECH CONSTRAINTS
+- React 18 + Vite, JavaScript (no TypeScript), React Router v6
+- State: React Context + useReducer (auth, cart, orders, notifications)
+- Styling: plain CSS with CSS variables (design tokens) + CSS Modules or one
+  global stylesheet per feature. No UI kit like MUI or Bootstrap.
+- Icons: lucide-react. Charts (admin/owner dashboards): recharts.
+- No localStorage dependency for core logic; keep state in memory (optional
+  persistence behind a small storage helper with try/catch).
+- Mock data in /src/data/*.js, accessed ONLY through /src/services/*.js
+  (async functions with small delays) so the real Firebase/Java API can replace
+  them later without touching components.
+- Map placeholders: a styled map component (static image/SVG with pins) behind a
+  <MapView/> wrapper, so a real mapping service can be dropped in later.
+- Payment placeholders: a <PaymentGatewayMock/> modal; real gateway is TBD.
+
+## FOLDER STRUCTURE
+src/
+  components/ (ui primitives: Button, Input, Select, Modal, Badge, Card, Tabs,
+    Table, Toast, Skeleton, EmptyState, Stepper, Rating, QuantityStepper, MapView)
+  layouts/ (PublicLayout, CustomerLayout, OwnerLayout, DeliveryLayout, AdminLayout)
+  pages/
+    auth/ customer/ owner/ delivery/ admin/
+  context/ (AuthContext, CartContext, OrderContext, NotificationContext)
+  services/ data/ hooks/ utils/ styles/
+
+## USER ROLES AND SCREENS (build ALL)
+
+### Shared / Auth
+1. Landing page: hero, "Shop local" search box, how-it-works (6 steps), feature
+   cards, CTAs for each role (Customer, Shop Owner, Delivery Partner).
+2. Login, Register (role selector: Customer / Shop owner / Delivery partner),
+   Forgot password. Form validation with inline errors.
+3. Role-based routing guard (mock auth). Demo-login buttons for each role.
+4. Notification bell dropdown + full notifications page (order-stage alerts).
+5. 404 and Unauthorized pages.
+
+### CUSTOMER
+1. Delivery location gate: confirm/change delivery address (map placeholder,
+   saved addresses, "use current location" mock). Everything below is scoped to
+   this delivery area.
+2. Home/Discover: nearby stores grid/list toggle, search by store name, category
+   chips, location/distance filter, open/closed badge, rating, delivery ETA and fee.
+3. Store page: banner, info, hours, distance, category tabs, product grid, offers
+   strip, search within store.
+4. Product search results: filters (category, price range, brand, size/variant,
+   in-stock, distance, rating), sorting, skeleton loading and empty states.
+5. Product detail + PRICE COMPARISON: table/cards of the same product across
+   nearby stores (price, stock status, delivery fee, ETA, offer applied, "Add to
+   cart"). RULE: different sizes, brands or variants are NEVER merged as
+   identical. Show variant/size/brand clearly and group only exact matches; show
+   a "Similar but different" section separately with a visible warning label.
+6. Cart: grouped by store, quantity stepper, stock warnings, price-change alerts,
+   offer/coupon field, itemised fees (delivery, platform, taxes) shown upfront.
+7. Validated checkout (stepper): Address -> Delivery slot -> Payment (Cash on
+   Delivery / Online via gateway mock) -> Review. Before placing: show validation
+   result for price, stock, offers, total. Disable the button after click and show
+   a loading state (duplicate order prevention). Success screen with order ID.
+8. Order tracking: live status timeline (Placed -> Accepted -> Preparing ->
+   Picked up -> In transit -> Delivered; also Rejected / Cancelled / Failed),
+   delivery partner card, map placeholder with moving pin (simulated), ETA.
+9. Order history with filters, order detail, reorder, invoice view, raise dispute
+   / report issue form.
+10. Profile: details, saved addresses, payment preferences, notification settings.
+
+### SHOP OWNER
+1. Store registration wizard (store info, category, location on map, documents
+   upload, hours) -> "Pending admin approval" state screen.
+2. Dashboard: today's orders, revenue, low-stock alerts, pending orders,
+   charts (sales over time, top products).
+3. Products: table with search/filter, add/edit product (name, brand, size,
+   variant, category, price, stock, images upload with preview, description),
+   bulk stock update, enable/disable listing, out-of-stock handling.
+4. Offers: create/edit promotional offers (percentage, flat, buy X get Y, dates,
+   products), active/expired tabs.
+5. Incoming orders board (New / Accepted / Preparing / Ready / Completed /
+   Rejected) with accept/reject (reason modal), order detail, mark ready for
+   pickup, delivery partner assignment status.
+6. Store profile and settings (hours, delivery radius, minimum order, holiday mode).
+7. Reviews and earnings/payout history.
+
+### DELIVERY PARTNER
+1. Registration + verification submission (ID, vehicle, licence, photo uploads)
+   and verification status screen (Pending / Approved / Rejected with reason).
+2. Dashboard: online/offline toggle, today's earnings, assigned deliveries.
+3. Assignment request screen: pickup store, drop address, distance, payout,
+   accept/decline with countdown timer.
+4. Active delivery screen: step buttons (Arrived at store -> Picked up -> In
+   transit -> Delivered), map placeholder, customer contact (masked), COD
+   collection confirmation, proof of delivery (OTP input).
+5. Delivery history and earnings summary.
+
+### ADMIN
+1. Dashboard: KPIs (users, stores, orders, GMV), charts, recent activity,
+   suspicious activity alerts.
+2. Approvals queue: stores and delivery partners (view documents, approve/reject
+   with reason).
+3. User/account management: table with search, filters, suspend/reactivate,
+   role badges.
+4. Category management: tree/list with add/edit/reorder/disable.
+5. Orders monitor: all orders, filters, live status, order detail drawer.
+6. Disputes: list, detail thread, resolve/refund/escalate actions.
+7. Suspicious activity / fraud flags log with severity and actions.
+8. Platform settings (fees, delivery radius defaults, payment methods toggle).
+
+## BUSINESS RULES THE UI MUST ENFORCE
+- Everything customer-facing is limited to the confirmed delivery area.
+- Product comparison never equates different size/brand/variant.
+- Checkout re-validates stock, price, offers and total; changes are shown clearly
+  before the order is placed.
+- Duplicate-order prevention (disable button, idempotency key in mock service).
+- All fees are visible before payment.
+- Orders reach final statuses: Delivered, Rejected, Cancelled, Failed.
+- Owners and partners cannot operate until admin approval.
+- A notification is generated at every order stage.
+
+## DESIGN SYSTEM
+- Modern, trustworthy, local-marketplace feel: warm primary (e.g. emerald/teal),
+  accent orange for offers, neutral greys. Define all colours, spacing, radius,
+  shadows and typography as CSS variables. Support light AND dark mode via
+  prefers-color-scheme plus a manual toggle.
+- Font: Inter (with system fallback). 8px spacing grid. Rounded cards, soft shadows.
+- Fully responsive:  desktop first . sidebar layouts for owner/admin/delivery on desktop.
+- Accessibility: semantic HTML, labels, focus states, keyboard navigation, ARIA
+  for modals/tabs, colour contrast AA, prefers-reduced-motion respected.
+- Every list/page needs loading (skeleton), empty and error states.
+- Toasts for all actions; confirmation modals for destructive actions.
+- Subtle transitions only; no heavy animation.
+
+## MOCK DATA REQUIREMENTS
+- 12+ stores across categories (grocery, pharmacy, bakery, electronics,
+  stationery, etc.), 60+ products with size/brand/variant fields, some identical
+  products across multiple stores with different prices/stock.
+- Sample users for each role, 20+ orders in varied statuses, offers, disputes,
+  notifications, and fraud flags. Use Indian context (INR, Pune area names).
+
+## DELIVERABLES AND WORKFLOW
+1. First output a brief plan: route map, component list, state shape. Then build.
+2. Generate the full project: package.json, vite config, index.html, all source
+   files. Code must run with `npm install && npm run dev` with zero errors.
+3. Build in this order: design system + layouts -> auth/routing -> customer flow
+   -> owner -> delivery -> admin -> polish.
+4. Write a README with setup, folder structure, route list, demo credentials, and a
+   "Backend integration points" section mapping each service function to the
+   future Firebase/Core Java API (Auth, Firestore, Storage, FCM, payment, maps).
+5. Do not leave TODO placeholders or lorem ipsum; every screen must be functional
+   with mock data. Keep components small, reusable and commented where logic is
+   non-obvious.
+6. At the end, list anything simplified or mocked.

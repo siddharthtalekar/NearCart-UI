@@ -1,0 +1,56 @@
+/* ── Badge Component ── */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-sans);
+  font-weight: var(--font-semibold);
+  white-space: nowrap;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+/* Sizes */
+.xs  { font-size: 10px; padding: 1px 6px; }
+.sm  { font-size: var(--text-xs); padding: 2px 8px; }
+.md  { font-size: var(--text-sm); padding: 4px 10px; }
+.lg  { font-size: var(--text-base); padding: 5px 14px; border-radius: var(--radius-lg); }
+
+/* Dot indicator */
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Variants */
+.success  { background: var(--color-success-bg); color: var(--color-success-text); border-color: var(--color-emerald-200); }
+.warning  { background: var(--color-warning-bg); color: var(--color-warning-text); border-color: var(--color-amber-100); }
+.error    { background: var(--color-error-bg);   color: var(--color-error-text);   border-color: var(--color-accent-200); }
+.info     { background: var(--color-info-bg);    color: var(--color-info-text);    border-color: var(--color-primary-200); }
+.neutral  { background: var(--color-bg-tertiary); color: var(--color-text-secondary); border-color: var(--color-border); }
+
+.successDot  { background: var(--color-success); }
+.warningDot  { background: var(--color-warning); }
+.errorDot    { background: var(--color-error); }
+.infoDot     { background: var(--color-info); }
+.neutralDot  { background: var(--color-text-tertiary); }
+
+/* Solid variants */
+.solid-primary  { background: var(--gradient-primary); color: white; }
+.solid-emerald  { background: var(--gradient-emerald); color: white; }
+.solid-accent   { background: var(--gradient-accent);  color: white; }
+
+/* Status badge */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+}

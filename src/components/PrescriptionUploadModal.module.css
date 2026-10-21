@@ -1,0 +1,446 @@
+/* src/components/PrescriptionUploadModal.module.css */
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.infoBanner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-lg);
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: var(--color-primary-700);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+[data-theme='dark'] .infoBanner {
+  color: var(--color-primary-300);
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.uploadSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.dropzone {
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  background: var(--color-bg);
+  transition: all var(--transition-fast);
+}
+
+.dropzone:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-50);
+}
+
+.dropzoneIconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dropzoneTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.dropzoneSub {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  max-width: 320px;
+  margin-top: 2px;
+}
+
+.previewContainer {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 2px solid var(--color-emerald-500);
+  background: #000;
+  max-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewImage {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background: #f8fafc;
+}
+
+.previewOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.previewTag {
+  color: #a7f3d0;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.clearImageBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(239, 68, 68, 0.85);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.clearImageBtn:hover {
+  background: var(--color-error);
+}
+
+.samplePresetsRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.sampleLabel {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  font-weight: 600;
+}
+
+.sampleButtons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.sampleBtn {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sampleBtn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.sampleBtnActive {
+  background: var(--color-primary-50);
+  border-color: var(--color-primary);
+  color: var(--color-primary-700);
+  font-weight: 700;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.storeSelectGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+}
+
+.pharmacyStoreCard {
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 10px 12px;
+  background: var(--color-surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all var(--transition-fast);
+}
+
+.pharmacyStoreCard:hover {
+  border-color: var(--color-primary-300);
+  background: var(--color-primary-50);
+}
+
+.pharmacyStoreCardActive {
+  border-color: var(--color-emerald-500);
+  background: rgba(16, 185, 129, 0.05);
+  box-shadow: 0 0 0 1px var(--color-emerald-500);
+}
+
+.storeCardLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.storeEmoji {
+  font-size: 18px;
+}
+
+.storeName {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.storeArea {
+  font-size: 10px;
+  color: var(--color-text-tertiary);
+}
+
+.storeRating {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-amber-600);
+  background: var(--color-amber-50);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+.formRow {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.formGroupHalf {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.selectInput,
+.textInput {
+  height: 38px;
+  padding: 0 12px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-size: 13px;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.selectInput:focus,
+.textInput:focus {
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.3;
+}
+
+.checkboxLabel input {
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.complianceNote {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--color-emerald-700);
+  background: var(--color-emerald-50);
+  border: 1px solid var(--color-emerald-200);
+  padding: 6px 12px;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Completed View */
+.completedWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-4) var(--space-2);
+}
+
+.completedIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-emerald-100);
+  color: var(--color-emerald-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-3);
+}
+
+.completedTitle {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.completedDesc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  max-width: 380px;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.processStepsBox {
+  width: 100%;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  margin: var(--space-4) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.stepRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.stepNumDone {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-emerald-500);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.stepNumActive {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+.stepNumFuture {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-border-strong);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.stepText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.stepText strong {
+  font-size: 13px;
+  color: var(--color-text-primary);
+}
+
+.stepText span {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+
+.completedActions {
+  width: 100%;
+}

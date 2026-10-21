@@ -1,0 +1,60 @@
+/* src/components/Skeleton.module.css */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-secondary) 25%,
+    var(--color-bg-tertiary)  50%,
+    var(--color-bg-secondary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position:  200% 0; }
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.body {
+  padding: var(--space-4);
+  display: flex; flex-direction: column; gap: var(--space-2);
+}
+
+.row {
+  display: flex; gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.list { display: flex; flex-direction: column; gap: var(--space-3); }
+
+.listItem {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.listBody {
+  flex: 1; display: flex; flex-direction: column; gap: var(--space-2);
+}
+
+.productCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+}
+
+.text {
+  display: flex; flex-direction: column; gap: var(--space-2);
+}
